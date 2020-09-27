@@ -6,3 +6,6 @@ RUN apt-get update
 RUN apt-get install -y build-essential
 # Install Qt5
 RUN apt-get install -y qt5-default
+
+# Add Qt project build script
+COPY ./build.sh /
