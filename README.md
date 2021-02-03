@@ -3,7 +3,10 @@
 Contains images for education purposes at ELTE FI (Eötvös Loránd University, Faculty of Informatics).
 
 ## Available images
- 
+
+### `mcserep/elte:ubuntu-2004`
+An Ubuntu 20.04 OS with essential build tools added.
+
 ### `mcserep/elte:ubuntu-2004-qt5`
 An Ubuntu 20.04 OS with Qt5 SDK and essential build tools added.
 
