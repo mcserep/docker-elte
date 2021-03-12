@@ -9,3 +9,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 # Install compiler and build tools
 RUN apt-get install -y build-essential cmake
+# Install miscellaneous tools
+RUN apt-get install -y rename
+
