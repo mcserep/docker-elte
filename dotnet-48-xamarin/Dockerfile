@@ -14,11 +14,11 @@ RUN `
     # Install the specified VS 2022 Build Tools.
     && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify `
         --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
-		--includeRecommended `
+        --includeRecommended `
         --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools `
-		--add Microsoft.VisualStudio.Workload.UniversalBuildTools `
-		--add Microsoft.VisualStudio.Workload.XamarinBuildTools `
-		--add Component.Android.SDK.MAUI `
+        --add Microsoft.VisualStudio.Workload.UniversalBuildTools `
+        --add Microsoft.VisualStudio.Workload.XamarinBuildTools `
+        --add Component.Android.SDK.MAUI `
         || IF "%ERRORLEVEL%"=="3010" EXIT 0) `
     `
     # Cleanup
