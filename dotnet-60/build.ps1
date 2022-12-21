@@ -3,7 +3,7 @@ $count = (Get-ChildItem -Path .\ -Filter *.sln -Recurse | Group-Object -Property
 if ($count -gt 0) {
   Get-ChildItem -Path .\ -Filter *.csproj -Recurse -File -Name | ForEach-Object {
     Write-Output "Now checking: $_"
-    $isDotnetFramework = (Select-String -Path "$_" -Pattern "Project ToolsVersion=").Matches.Success
+    $isDotnetFramework = (Select-String -Path "$_" -Pattern "<Project.*ToolsVersion=").Matches.Success
     
     if ($isDotnetFramework) {
       Write-Error -Message ".NET Framework project found. Use .NET (Core) instead." -Category InvalidType
