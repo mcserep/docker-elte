@@ -26,20 +26,32 @@ Contains a build script to compile Visual Studio solutions (.NET Framework and .
  - copy the Visual Studio solutions into the container in a preferred folder;
  - execute the `C:\build.ps1` script in that folder.
 
-### `mcserep/elte:dotnet-60`
+### `mcserep/elte:dotnet-60-linux`
+Debian 11 Bullseye based image with the .NET 6 SDK (.NET CLI, .NET runtime, ASP.NET Core).
+
+Contains a build script to compile Visual Studio solutions (only .NET Core supported). Usage:
+- copy the Visual Studio solutions into the container in a preferred folder;
+- execute the `/build.sh` script in that folder to build all solutions found;
+- execute the `/execute.sh` script in that folder to run the first found executable project.
+
+### `mcserep/elte:dotnet-60-windows`
 Windows Server, version 2019 OS with the .NET SDK 6.0 included.
 
 Contains a build script to compile Visual Studio solutions (only .NET Core supported). Usage:
  - copy the Visual Studio solutions into the container in a preferred folder;
- - execute the `C:\build.ps1` script in that folder.
+ - execute the `C:\build.ps1` script in that folder to build all solutions found;
+ - execute the `C:\execute.ps1` script in that folder to run the first found executable project.
 
- Contains Roslynator.Dotnet.CLI and the following Roslyn-based analyzers:
- - Microsoft.CodeAnalysis.NetAnalyzers
- - SonarAnalyzer.CSharp
- - Roslynator.Analyzers
+ Contains `Roslynator.Dotnet.CLI` and the following Roslyn-based analyzers:
+ - `Microsoft.CodeAnalysis.NetAnalyzers`
+ - `SonarAnalyzer.CSharp`
+ - `Roslynator.Analyzers`
+
+### `mcserep/elte:dotnet-60`
+Multi-architecture image for `mcserep/elte:dotnet-60-linux` and `mcserep/elte:dotnet-60-windows`.
 
 ### `mcserep/elte:dotnet-60-maui`
-Extends the `mcserep/elte:dotnet-60` image with MAUI support and related tooling:
+Extends the `mcserep/elte:dotnet-60-windows` image with MAUI support and related tooling:
  - MAUI workload for .NET (for Windows, Android, iOS, macOS, tvOS)
  - Android SDK (API 31 & API 33)
  - Java SDK (OpenJDK 8 & OpenJDK 11)

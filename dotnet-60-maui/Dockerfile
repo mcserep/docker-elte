@@ -1,6 +1,6 @@
 # escape=`
-# Start with a .NET 6 development image.
-FROM mcr.microsoft.com/dotnet/sdk:6.0-windowsservercore-ltsc2019
+# Start with a custom Windows-based .NET 6 development image.
+FROM mcserep/elte:dotnet-60-windows
 
 # Use PowerShell during Docker image build.
 SHELL ["powershell.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -42,6 +42,3 @@ RUN echo 'y' | & 'C:\Program Files (x86)\Android\android-sdk\tools\bin\sdkmanage
 
 # Define the entry point for the docker container.
 ENTRYPOINT ["powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
-
-# Add .NET project build script
-COPY ./build.ps1 C:\
