@@ -5,10 +5,10 @@ Contains images for education purposes at ELTE FI (Eötvös Loránd University, 
 ## Available images
 
 ### `mcserep/elte:ubuntu-2004`
-An Ubuntu 20.04 OS with essential build tools added.
+An Ubuntu 20.04 OS with essential build tools and Ericsson CodeChecker added.
 
 ### `mcserep/elte:ubuntu-2004-qt5`
-An Ubuntu 20.04 OS with Qt5 SDK and essential build tools added.
+An Ubuntu 20.04 OS with Qt5 SDK, essential build tools and Ericsson CodeChecker added.
 
 Contains a build script to compile Qt projects. Usage:
  - copy the Qt projects into the container in a preferred folder;
@@ -32,6 +32,11 @@ Windows Server, version 2019 OS with the .NET SDK 6.0 included.
 Contains a build script to compile Visual Studio solutions (only .NET Core supported). Usage:
  - copy the Visual Studio solutions into the container in a preferred folder;
  - execute the `C:\build.ps1` script in that folder.
+
+ Contains Roslynator.Dotnet.CLI and the following Roslyn-based analyzers:
+ - Microsoft.CodeAnalysis.NetAnalyzers
+ - SonarAnalyzer.CSharp
+ - Roslynator.Analyzers
 
 ### `mcserep/elte:dotnet-60-maui`
 Extends the `mcserep/elte:dotnet-60` image with MAUI support and related tooling:
