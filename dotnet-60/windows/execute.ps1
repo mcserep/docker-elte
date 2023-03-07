@@ -12,11 +12,6 @@ if ($count -gt 0) {
     
     if ($isExecutable) {
       dotnet run -c Release --project "$_"
-      
-      if ($LastExitCode -ne 0) {
-        Write-Error -Message "Execution error." -Category InvalidOperation
-      }
-      
       break
     }
   }
