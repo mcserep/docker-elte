@@ -18,4 +18,4 @@ RUN C:\nuget.exe install SonarAnalyzer.CSharp -Version 8.51.0.59060 -OutputDirec
 RUN C:\nuget.exe install Roslynator.Analyzers -Version 4.2.0 -OutputDirectory $env:ANALYZERS_DIR
 
 # Add .NET project build script
-COPY ./build.ps1 C:\
+COPY ./build.ps1 ./execute.ps1 C:/
