@@ -34,6 +34,11 @@ Contains a build script to compile Visual Studio solutions (only .NET Core suppo
 - execute the `/build.sh` script in that folder to build all solutions found;
 - execute the `/execute.sh` script in that folder to run the first found executable project.
 
+ Contains `Roslynator.Dotnet.CLI` and the following Roslyn-based analyzers:
+ - `Microsoft.CodeAnalysis.NetAnalyzers`
+ - `SonarAnalyzer.CSharp`
+ - `Roslynator.Analyzers`
+
 ### `mcserep/elte:dotnet-60-windows`
 Windows Server, version 2019 OS with the .NET SDK 6.0 included.
 
