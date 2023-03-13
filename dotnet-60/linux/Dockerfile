@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim
 
-ENV ANALYZERS_PATH=/analyzers
+ENV ANALYZERS_DIR=/analyzers
 ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Install Roslynator CLI
@@ -12,10 +12,10 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Install analyzers
-RUN mkdir $ANALYZERS_PATH
-RUN nuget install Microsoft.CodeAnalysis.NetAnalyzers -Version 6.0.0 -OutputDirectory $ANALYZERS_PATH
-RUN nuget install SonarAnalyzer.CSharp -Version 8.51.0.59060 -OutputDirectory $ANALYZERS_PATH
-RUN nuget install Roslynator.Analyzers -Version 4.2.0 -OutputDirectory $ANALYZERS_PATH
+RUN mkdir $ANALYZERS_DIR
+RUN nuget install Microsoft.CodeAnalysis.NetAnalyzers -Version 6.0.0 -OutputDirectory $ANALYZERS_DIR
+RUN nuget install SonarAnalyzer.CSharp -Version 8.51.0.59060 -OutputDirectory $ANALYZERS_DIR
+RUN nuget install Roslynator.Analyzers -Version 4.2.0 -OutputDirectory $ANALYZERS_DIR
 
 # Add .NET project build script
 COPY ./build.sh ./execute.sh /
