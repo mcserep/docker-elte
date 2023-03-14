@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 
 ENV ANALYZERS_DIR=/analyzers
 ENV PATH="$PATH:/root/.dotnet/tools"
