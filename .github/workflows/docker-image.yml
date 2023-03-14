@@ -1,0 +1,123 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch: {}
+
+jobs:
+  ubuntu-2004:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build ubuntu-2004 -t mcserep/elte:${{github.job}}
+    - name: Login to Docker Hub
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker image
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      run: docker push mcserep/elte:${{github.job}}
+  
+  ubuntu-2004-qt5:
+    runs-on: ubuntu-latest
+    needs: ubuntu-2004
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build ubuntu-2004-qt5 -t mcserep/elte:${{github.job}}
+    - name: Login to Docker Hub
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker image
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      run: docker push mcserep/elte:${{github.job}}
+  
+  dotnet-60-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build dotnet-60/linux -t mcserep/elte:${{github.job}}
+    - name: Login to Docker Hub
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker image
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      run: docker push mcserep/elte:${{github.job}}
+  
+  dotnet-48:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build dotnet-48 -t mcserep/elte:${{github.job}}
+    - name: Login to Docker Hub
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker image
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      run: docker push mcserep/elte:${{github.job}}
+  
+  dotnet-60-windows:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build dotnet-60/windows -t mcserep/elte:${{github.job}}
+    - name: Login to Docker Hub
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker image
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      run: docker push mcserep/elte:${{github.job}}
+   
+  dotnet-60-maui:
+    runs-on: windows-2019
+    needs: dotnet-60-windows
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build dotnet-60-maui -t mcserep/elte:${{github.job}}
+    - name: Login to Docker Hub
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker image
+      if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+      run: docker push mcserep/elte:${{github.job}}
+  
+  dotnet-60-multiarch:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
+    needs: [dotnet-60-linux, dotnet-60-windows]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Create the Docker manifest
+      run: docker manifest create mcserep/elte:dotnet-60 --amend mcserep/elte:dotnet-60-linux --amend mcserep/elte:dotnet-60-windows
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Upload the Docker manifest
+      run: docker manifest push --purge mcserep/elte:dotnet-60
