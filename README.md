@@ -8,7 +8,7 @@ Contains images for education purposes at ELTE FI (Eötvös Loránd University, 
 An Ubuntu 20.04 OS with essential build tools (C/C++) and [Ericsson CodeChecker](https://codechecker.readthedocs.io/) added.
 
 ### `mcserep/elte:ubuntu-2004-qt5`
-Extends the `mcserep/elte:gcc-ubuntu-20.04` image with the Qt5 SDK.
+Extends the `mcserep/elte:ubuntu-2004` image with the Qt5 SDK.
 
 Contains a build script to compile Qt projects. Usage:
  - copy the Qt projects into the container in a preferred folder;
