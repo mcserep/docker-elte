@@ -6,7 +6,7 @@ IFS=$'\n'
 counter=$(find . -iname "*.sln" | wc -l)
 find . -type f -name "*.sln" | while read file; do
     echo "Now building: $file"
-    dotnet build $file
+    dotnet build -c Release $file
 done
 
 if [ $counter -eq 0 ]; then

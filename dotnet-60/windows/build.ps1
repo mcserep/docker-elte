@@ -6,19 +6,22 @@ if ($count -gt 0) {
     $isDotnetFramework = (Select-String -Path "$_" -Pattern "<Project.*ToolsVersion=").Matches.Success
     
     if ($isDotnetFramework) {
-      Write-Error -Message ".NET Framework project found. Use .NET (Core) instead." -Category InvalidType
+      Write-Output ".NET Framework project found. Use .NET (Core) instead."
+      throw ".NET Framework project found. Use .NET (Core) instead."
     }
   }
 
   Get-ChildItem -Path .\ -Filter *.sln -Recurse -File -Name | ForEach-Object {
     Write-Output "Now building: $_"
-    dotnet build "$_"
+    dotnet build -c Release "$_"
 
     if ($LastExitCode -ne 0) {
-      Write-Error -Message "Compilation error." -Category InvalidOperation
+      Write-Output "Compilation error."
+      throw "Compilation error."
     }
   }
 }
 else {
-  Write-Error -Message "No Visual Studio solutions found." -Category InvalidData
+  Write-Output "No Visual Studio solutions found."
+  throw "No Visual Studio solutions found."
 }

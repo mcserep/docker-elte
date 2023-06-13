@@ -1,5 +1,5 @@
 $ErrorActionPreference = "Stop"
-$params = $args
+$params = $args -split " "
 $stdin = while (1) {
   Read-Host | set r;
   if (!$r) {break};
@@ -12,7 +12,8 @@ if ($count -gt 0) {
     $isDotnetFramework = (Select-String -Path "$_" -Pattern "<Project.*ToolsVersion=").Matches.Success
     
     if ($isDotnetFramework) {
-      Write-Error -Message ".NET Framework project found. Use .NET (Core) instead." -Category InvalidType
+      Write-Output ".NET Framework project found. Use .NET (Core) instead."
+      throw ".NET Framework project found. Use .NET (Core) instead."
     }
     
     $isExecutable = (Select-String -Path "$_" -Pattern "<OutputType>Exe</OutputType>").Matches.Success
@@ -24,5 +25,6 @@ if ($count -gt 0) {
   }
 }
 else {
-  Write-Error -Message "No Visual Studio projects found." -Category InvalidData
+  Write-Output "No Visual Studio projects found."
+  throw "No Visual Studio projects found."
 }

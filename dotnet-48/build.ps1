@@ -6,10 +6,12 @@ if ($count -gt 0) {
     MSBuild "$_" /restore /t:Build
 
     if ($LastExitCode -ne 0) {
-      Write-Error -Message "Compilation error." -Category InvalidOperation
+      Write-Output "Compilation error."
+      throw "Compilation error."
     }
   }
 }
 else {
-  Write-Error -Message "No Visual Studio solutions found." -Category InvalidData
+  Write-Output "No Visual Studio solutions found."
+  throw "No Visual Studio solutions found."
 }
