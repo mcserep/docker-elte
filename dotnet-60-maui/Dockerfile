@@ -6,6 +6,7 @@ FROM mcserep/elte:dotnet-60-windows
 SHELL ["powershell.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # Chocolatey
+ENV chocolateyVersion=1.4.0
 RUN `
     # Download
     Invoke-WebRequest -OutFile C:\chocolatey-install.ps1 -URI https://community.chocolatey.org/install.ps1; `
