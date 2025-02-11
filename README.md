@@ -62,3 +62,13 @@ Extends the `mcserep/elte:dotnet-60-windows` image with MAUI support and related
  - Java SDK (OpenJDK 8 & OpenJDK 11)
 
 Contains a `C:\build.ps1` build script to compile Visual Studio solutions.
+
+### `mcserep/elte:workbook`
+An Ubuntu 24.04 based image capable of building HTML and PDF workbooks from Markdown.  
+Toolset:
+ - [Pandoc](https://pandoc.org/)
+   - [Diagram Generator](https://github.com/pandoc-ext/diagram)
+ - [wkhtmltopdf](https://wkhtmltopdf.org/)
+ - [PlantUML](https://plantuml.com/)
+ - [Graphviz](https://graphviz.org/)
+ - [GNU Make](https://www.gnu.org/software/make/)
