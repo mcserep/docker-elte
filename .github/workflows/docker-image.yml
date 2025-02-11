@@ -11,12 +11,12 @@ jobs:
   ubuntu-2004:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build ubuntu-2004 -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -28,12 +28,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: ubuntu-2004
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build ubuntu-2004-qt5 -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -44,12 +44,12 @@ jobs:
   dotnet-60-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build dotnet-60/linux -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -60,12 +60,12 @@ jobs:
   dotnet-48:
     runs-on: windows-2019
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build dotnet-48 -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -76,12 +76,12 @@ jobs:
   dotnet-60-windows:
     runs-on: windows-2019
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build dotnet-60/windows -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -93,12 +93,12 @@ jobs:
     runs-on: windows-2019
     needs: dotnet-60-windows
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build dotnet-60-maui -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -111,9 +111,9 @@ jobs:
     if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
     needs: [dotnet-60-linux, dotnet-60-windows]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Login to Docker Hub
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -125,12 +125,12 @@ jobs:
   workbook:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build workbook -t mcserep/elte:${{github.job}}
     - name: Login to Docker Hub
       if: ${{ github.repository == 'mcserep/docker-elte' && github.ref_name == 'master' }}
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
