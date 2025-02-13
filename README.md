@@ -64,7 +64,7 @@ Extends the `mcserep/elte:dotnet-60-windows` image with MAUI support and related
 Contains a `C:\build.ps1` build script to compile Visual Studio solutions.
 
 ### `mcserep/elte:workbook`
-An Ubuntu 24.04 based image capable of building HTML and PDF workbooks from Markdown.  
+An Ubuntu 24.10 based image capable of building HTML and PDF workbooks from Markdown.  
 Toolset:
  - [Pandoc](https://pandoc.org/)
    - [Diagram Generator](https://github.com/pandoc-ext/diagram)
